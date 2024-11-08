@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversión de Expresión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="my-5">Conversión de Expresión Infija a Postfija</h1>
+
+    <!-- Formulario para la expresión -->
+    <form method="POST" action="/convertir">
+        <div class="mb-3">
+            <label for="expresion1" class="form-label">Expresión Infija</label>
+            <input type="text" class="form-control" id="expresion1" name="expresion1" placeholder="Ejemplo: (A+B)*C" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Convertir</button>
+    </form>
+
+    <hr>
+
+    <!-- Mostrar el resultado de la conversión -->
+    {% if resultado %}
+        <h3 class="mt-4">Expresión Postfija:</h3>
+        <p>{{ resultado.expresion2 }}</p>
+    {% elif error %}
+        <h3 class="mt-4 text-danger">Error: {{ error }}</h3>
+    {% endif %}
+
+    <!-- Mostrar el historial de conversiones -->
+    <h3 class="mt-5">Historial de Expresiones</h3>
+    <ul class="list-group">
+        {% for item in historial %}
+            <li class="list-group-item">
+                <strong>Infija:</strong> {{ item.expresion1 }}<br>
+                <strong>Postfija:</strong> {{ item.expresion2 }}<br>             
+            </li>
+        {% else %}
+            <li class="list-group-item">No hay expresiones en el historial.</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
